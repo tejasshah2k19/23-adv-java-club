@@ -1,0 +1,24 @@
+q: which jar file we need to add for HttpServlet
+ans: servlet-api.jar 
+
+
+q: how to add servlet-api.jar in project's class path? 
+ans: right click on project -> java build path -> click on libraries tab ->
+click on add external -> browse path to tomcat/lib and open servlet-api.jar 
+
+now click on orderandexports tab -> select all -> apply and close. 
+
+
+
+Servlet Creation Steps: 
+
+1) extends HttpServlet 
+2) override service method 
+3) map your serlvet in web.xml
+
+
+server will never read any data directly - we need to mention! 
+we can give configuration using web.xml file 
+web.xml -> configuration file / servlet configuration file / dd / deployment descriptor 
+
+WEB-INF/web.xml 
