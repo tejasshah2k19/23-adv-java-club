@@ -22,3 +22,22 @@ we can give configuration using web.xml file
 web.xml -> configuration file / servlet configuration file / dd / deployment descriptor 
 
 WEB-INF/web.xml 
+
+
+
+1) required field 
+2) regex / format 
+
+
+--------------------------------------------------
+
+html -> jsp  [ html + java ] 
+
+jsp -> java server pages | java servlet pages 
+
+
+<%  %>  scriptlet 
+<%= %>  expression
+
+
+
