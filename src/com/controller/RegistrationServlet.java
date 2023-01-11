@@ -31,10 +31,18 @@ public class RegistrationServlet extends HttpServlet {
 		if (firstName == null || firstName.trim().length() == 0) {
 			isError = true;
 			errorMsg = errorMsg + "<br>Please Enter FirstName";
+			request.setAttribute("firstNameError", "Please Enter FirstName");
 		}
 		if (email == null || email.trim().length() == 0) {
 			isError = true;
 			errorMsg = errorMsg + "<br>Please Enter Email";
+			request.setAttribute("emailError","Please Enter Email");
+		}
+		
+		if( password == null || password.trim().length() == 0 ) {
+			isError = true;
+			errorMsg += "<br>Please Enter Password";
+			request.setAttribute("passwordError", "Please Enter Password");
 		}
 
 		if (isError == true) {
