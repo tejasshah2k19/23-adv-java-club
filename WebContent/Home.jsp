@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +7,16 @@
 <title>Home</title>
 </head>
 <body>
-<h2>Welcome...</h2>
+	<%
+		String firstNameValue = (String) request.getAttribute("firstNameValue");
+		String emailValue = (String) request.getAttribute("emailValue");
+	%>
+
+	<h2>Welcome...</h2>
+
+	FirstName :
+	<%=firstNameValue%><br> Email :
+	<%=emailValue%>
+
 </body>
 </html>

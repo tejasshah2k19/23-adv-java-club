@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.util.Validation;
+
 public class RegistrationServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -28,18 +30,27 @@ public class RegistrationServlet extends HttpServlet {
 		String errorMsg = "";
 		boolean isError = false;
 
-		if (firstName == null || firstName.trim().length() == 0) {
+		if (Validation.isBlank(firstName)) {
 			isError = true;
 			errorMsg = errorMsg + "<br>Please Enter FirstName";
 			request.setAttribute("firstNameError", "Please Enter FirstName");
-		}
-		if (email == null || email.trim().length() == 0) {
+		} else if (Validation.isAlpha(firstName) == false) {
 			isError = true;
-			errorMsg = errorMsg + "<br>Please Enter Email";
-			request.setAttribute("emailError","Please Enter Email");
+			request.setAttribute("firstNameError", "Please Enter Valid FirstName");
+
+		} else {
+			request.setAttribute("firstNameValue", firstName);
 		}
 		
-		if( password == null || password.trim().length() == 0 ) {
+		if (Validation.isBlank(email)) {
+			isError = true;
+			errorMsg = errorMsg + "<br>Please Enter Email";
+			request.setAttribute("emailError", "Please Enter Email");
+		} else {
+			request.setAttribute("emailValue", email);
+		}
+
+		if (password == null || password.trim().length() == 0) {
 			isError = true;
 			errorMsg += "<br>Please Enter Password";
 			request.setAttribute("passwordError", "Please Enter Password");
@@ -47,15 +58,15 @@ public class RegistrationServlet extends HttpServlet {
 
 		if (isError == true) {
 			// go back with error
-			
-			request.setAttribute("error", errorMsg);//key : value 
+
+			request.setAttribute("error", errorMsg);// key : value
 			RequestDispatcher rd = request.getRequestDispatcher("Registration.jsp");
 			rd.forward(request, response);
 		} else {
 			// good to go ahead
 			RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
 			rd.forward(request, response);
-	
+
 		}
 
 	}

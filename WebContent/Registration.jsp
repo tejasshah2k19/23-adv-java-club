@@ -16,11 +16,13 @@
 		String firstNameError = (String) request.getAttribute("firstNameError");
 		String emailError = (String) request.getAttribute("emailError");
 		String passwordError = (String) request.getAttribute("passwordError");
+
+		String firstNameValue = (String) request.getAttribute("firstNameValue");
+		String emailValue = (String) request.getAttribute("emailValue");
 	%>
 
 	<div class="container-fluid">
-		<Br>
-		<br>
+		<Br> <br>
 
 		<div class="row">
 			<div class="col-md-3"></div>
@@ -33,15 +35,17 @@
 
 					<div class="form-group">
 						<label>FirstName</label> <input type="text" name="firstName"
-							class="form-control" placeholder="Enter FirstName"> <span
-							style="color: red;"><%=firstNameError == null ? "" : firstNameError%></span>
+							class="form-control" placeholder="Enter FirstName"
+							value="<%=firstNameValue == null ? "" : firstNameValue%>">
+						<span style="color: red;"><%=firstNameError == null ? "" : firstNameError%></span>
 					</div>
 
 
 					<div class="form-group">
 						<label>Email</label> <input type="text" name="email"
-							class="form-control" placeholder="Enter Email"> <span
-							style="color: red;"><%=emailError == null ? "" : emailError%></span>
+							class="form-control"
+							value="<%=emailValue == null ? "" : emailValue%>"
+							placeholder="Enter Email"> <span style="color: red;"><%=emailError == null ? "" : emailError%></span>
 					</div>
 
 					<div class="form-group">
