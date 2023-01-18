@@ -39,5 +39,61 @@ jsp -> java server pages | java servlet pages
 <%  %>  scriptlet 
 <%= %>  expression
 
+----------------------------
+
+if i make 550 request for LoginServlet then how many objects are created? 
+how many threads are created ? 
+how many times init() service() destroy() called? 
+
+ans : 
+	objects : 1 
+	threads : 550
+	init    : 1
+	service : 550 
+	destroy : 0  
+
+
+----------------------------
+
+1) demonstrate life cycle of servlet 
+2) demo -> HTTP get [doGet]  and HTTP post [doPost] 
+
+
+----------------------------
+ 
+EL -> Expression Language 
+
+-> print -> jsp 
+
+	${msg}
+	${firstNameError}  
+
+
+	email 
+		submit
+		
+	email present? 
+	
+	error -> jsp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

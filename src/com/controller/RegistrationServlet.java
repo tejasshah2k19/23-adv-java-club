@@ -13,6 +13,8 @@ import com.util.Validation;
 
 public class RegistrationServlet extends HttpServlet {
 
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// }
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -41,7 +43,7 @@ public class RegistrationServlet extends HttpServlet {
 		} else {
 			request.setAttribute("firstNameValue", firstName);
 		}
-		
+
 		if (Validation.isBlank(email)) {
 			isError = true;
 			errorMsg = errorMsg + "<br>Please Enter Email";
