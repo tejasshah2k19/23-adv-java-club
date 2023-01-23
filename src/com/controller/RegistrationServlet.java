@@ -2,6 +2,8 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.util.DbConnection;
 import com.util.Validation;
 
 public class RegistrationServlet extends HttpServlet {
@@ -65,8 +68,33 @@ public class RegistrationServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("Registration.jsp");
 			rd.forward(request, response);
 		} else {
-			// good to go ahead
-			RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+
+			try {
+				// good to go ahead
+				// database --- store
+				// 1) open db connection
+				Connection con = DbConnection.getConnection();
+				// 2) query
+				// Statement , PreparedStatement
+
+				PreparedStatement pstmt = con
+						.prepareStatement("insert into users (firstName,email,password) values (?,?,?)");
+				pstmt.setString(1, firstName);
+				pstmt.setString(2, email);
+				pstmt.setString(3, password);
+
+				int i = pstmt.executeUpdate(); // state change -> insert / update / delete
+				if (i == 1) {
+					System.out.println("User added into db..");
+				} else {
+					System.out.println("fail to add user in db");
+				}
+			} catch (Exception ee) {
+				ee.printStackTrace();
+			}
+
+			// mail : welcome , link - verify
+			RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
 			rd.forward(request, response);
 
 		}

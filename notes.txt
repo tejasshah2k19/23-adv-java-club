@@ -76,9 +76,37 @@ EL -> Expression Language
 	
 	error -> jsp
 
+----------------------------
 
 
-
+project -> root -> right click -> properties -> java build path -> libraries tab -> add jar -> select 
+	project folder -> web-inf -> lib -> mysql-connector 
+	
+	order and export tab -> select all -> apply close 
+	
+open db connection
+execute query 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
 
 
 
