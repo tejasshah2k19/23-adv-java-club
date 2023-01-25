@@ -1,9 +1,6 @@
 package com.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.util.DbConnection;
+import com.bean.UserBean;
+import com.dao.UserDao;
 import com.util.Validation;
 
 public class RegistrationServlet extends HttpServlet {
@@ -35,6 +33,7 @@ public class RegistrationServlet extends HttpServlet {
 		String errorMsg = "";
 		boolean isError = false;
 
+		UserBean userBean = new UserBean();
 		if (Validation.isBlank(firstName)) {
 			isError = true;
 			errorMsg = errorMsg + "<br>Please Enter FirstName";
@@ -45,6 +44,7 @@ public class RegistrationServlet extends HttpServlet {
 
 		} else {
 			request.setAttribute("firstNameValue", firstName);
+			userBean.setFirstName(firstName);
 		}
 
 		if (Validation.isBlank(email)) {
@@ -53,12 +53,15 @@ public class RegistrationServlet extends HttpServlet {
 			request.setAttribute("emailError", "Please Enter Email");
 		} else {
 			request.setAttribute("emailValue", email);
+			userBean.setEmail(email);
 		}
 
 		if (password == null || password.trim().length() == 0) {
 			isError = true;
 			errorMsg += "<br>Please Enter Password";
 			request.setAttribute("passwordError", "Please Enter Password");
+		}else {
+			userBean.setPassword(password);
 		}
 
 		if (isError == true) {
@@ -69,29 +72,10 @@ public class RegistrationServlet extends HttpServlet {
 			rd.forward(request, response);
 		} else {
 
-			try {
-				// good to go ahead
-				// database --- store
-				// 1) open db connection
-				Connection con = DbConnection.getConnection();
-				// 2) query
-				// Statement , PreparedStatement
+			//
+			UserDao userDao = new UserDao();
 
-				PreparedStatement pstmt = con
-						.prepareStatement("insert into users (firstName,email,password) values (?,?,?)");
-				pstmt.setString(1, firstName);
-				pstmt.setString(2, email);
-				pstmt.setString(3, password);
-
-				int i = pstmt.executeUpdate(); // state change -> insert / update / delete
-				if (i == 1) {
-					System.out.println("User added into db..");
-				} else {
-					System.out.println("fail to add user in db");
-				}
-			} catch (Exception ee) {
-				ee.printStackTrace();
-			}
+			userDao.addUser(userBean);
 
 			// mail : welcome , link - verify
 			RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");

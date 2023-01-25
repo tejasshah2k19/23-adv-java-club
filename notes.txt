@@ -87,11 +87,25 @@ project -> root -> right click -> properties -> java build path -> libraries tab
 open db connection
 execute query 
 	
+-----------------------------------------
+MVC 
+
+model -> data / db 
+	bean 
+	dao 
+view  -> html jsp 
+controller ->  logic 
 	
 	
 	
-	
-	
+com->
+	controller 
+	dao
+	bean
+	util
+		
+
+webapp/webcontent 
 	
 	
 	
