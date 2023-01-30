@@ -20,16 +20,22 @@
 			<th>UserId</th>
 			<th>FirstName</th>
 			<th>Email</th>
+			<th>Action</th>
+
 		</tr>
 		<%
 			for (UserBean user : users) {
 		%>
-			<tr>
-				<td><%=user.getUserId() %></td>
-				<td><%=user.getFirstName()%></td>
-				<td><%=user.getEmail() %></td>
-
-			</tr>
+		<tr>
+			<td><%=user.getUserId()%></td>
+			<td><%=user.getFirstName()%></td>
+			<td><%=user.getEmail()%></td>
+			<td><a href="DeleteUserSerlvet?userId=<%=user.getUserId()%>">Delete</a>
+			| 
+			<a href="ViewUserServlet?userId=<%=user.getUserId()%>">View</a>
+			
+			</td>
+		</tr>
 
 		<%
 			}

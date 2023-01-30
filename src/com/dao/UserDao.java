@@ -66,4 +66,29 @@ public class UserDao {
 
 		return null;
 	}
+
+	public UserBean getUserByUserId(Integer userId) {
+
+		try {
+			Connection con = DbConnection.getConnection();
+			PreparedStatement pstmt = con.prepareStatement("select * from users where userId = ?");
+			pstmt.setInt(1, userId);
+
+			ResultSet rs = pstmt.executeQuery();// db record
+
+			if (rs.next()) {
+				UserBean user = new UserBean();
+				user.setUserId(rs.getInt("userId"));
+				user.setFirstName(rs.getString("firstName"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				return user;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 }

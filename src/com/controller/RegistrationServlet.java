@@ -33,7 +33,7 @@ public class RegistrationServlet extends HttpServlet {
 		String errorMsg = "";
 		boolean isError = false;
 
-		UserBean userBean = new UserBean();
+		UserBean user = new UserBean();
 		if (Validation.isBlank(firstName)) {
 			isError = true;
 			errorMsg = errorMsg + "<br>Please Enter FirstName";
@@ -44,7 +44,7 @@ public class RegistrationServlet extends HttpServlet {
 
 		} else {
 			request.setAttribute("firstNameValue", firstName);
-			userBean.setFirstName(firstName);
+			user.setFirstName(firstName);
 		}
 
 		if (Validation.isBlank(email)) {
@@ -53,7 +53,7 @@ public class RegistrationServlet extends HttpServlet {
 			request.setAttribute("emailError", "Please Enter Email");
 		} else {
 			request.setAttribute("emailValue", email);
-			userBean.setEmail(email);
+			user.setEmail(email);
 		}
 
 		if (password == null || password.trim().length() == 0) {
@@ -61,7 +61,7 @@ public class RegistrationServlet extends HttpServlet {
 			errorMsg += "<br>Please Enter Password";
 			request.setAttribute("passwordError", "Please Enter Password");
 		}else {
-			userBean.setPassword(password);
+			user.setPassword(password);
 		}
 
 		if (isError == true) {
@@ -75,7 +75,7 @@ public class RegistrationServlet extends HttpServlet {
 			//
 			UserDao userDao = new UserDao();
 
-			userDao.addUser(userBean);
+			userDao.addUser(user);
 
 			// mail : welcome , link - verify
 			RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
