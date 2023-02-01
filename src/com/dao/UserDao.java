@@ -91,4 +91,29 @@ public class UserDao {
 
 		return null;
 	}
+
+	public void updateUser(UserBean userBean) {
+
+		try {
+			// good to go ahead
+			// database --- store
+			// 1) open db connection
+			Connection con = DbConnection.getConnection();
+			// 2) query
+			// Statement , PreparedStatement
+
+			PreparedStatement pstmt = con.prepareStatement("update   users set firstName = ? where userId = ? ");
+			pstmt.setString(1, userBean.getFirstName());
+			pstmt.setInt(2, userBean.getUserId());
+
+			int i = pstmt.executeUpdate(); // state change -> insert / update / delete
+			if (i == 1) {
+				System.out.println("User updated into db..");
+			} else {
+				System.out.println("fail to modify user in db");
+			}
+		} catch (Exception ee) {
+			ee.printStackTrace();
+		}
+	}
 }

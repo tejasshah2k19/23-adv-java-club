@@ -32,7 +32,9 @@
 			<td><%=user.getEmail()%></td>
 			<td><a href="DeleteUserSerlvet?userId=<%=user.getUserId()%>">Delete</a>
 			| 
-			<a href="ViewUserServlet?userId=<%=user.getUserId()%>">View</a>
+			<a href="ViewUserServlet?userId=<%=user.getUserId()%>">View</a>|
+			<a href="EditUserServlet?userId=<%=user.getUserId()%>">Edit</a>
+			
 			
 			</td>
 		</tr>
